@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TA Bill</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background:#e5e5e5;
+    padding:20px;
+}
+
+.container{
+    width:1100px;
+    margin:auto;
+    background:#fff;
+    padding:25px;
+    border:2px solid #000;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.header h2{
+    font-size:28px;
+}
+
+.top-right{
+    text-align:right;
+    font-size:14px;
+}
+
+.center-title{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.center-title h1{
+    font-size:30px;
+}
+
+.center-title h3{
+    font-size:22px;
+    margin-top:5px;
+}
+
+.form-section{
+    background:#f7f7f7;
+    padding:15px;
+    border:1px solid #999;
+    margin-bottom:25px;
+}
+
+.form-row{
+    display:flex;
+    gap:15px;
+    margin-bottom:12px;
+}
+
+.form-group{
+    flex:1;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:5px;
+    font-weight:bold;
+}
+
+.form-group input{
+    width:100%;
+    padding:8px;
+    border:1px solid #999;
+}
+
+button{
+    padding:10px 20px;
+    background:#000;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+.info{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.info div{
+    border:1px solid #999;
+    padding:10px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+table th,
+table td{
+    border:1px solid #000;
+    padding:8px;
+    text-align:center;
+    font-size:14px;
+}
+
+table th{
+    background:#efefef;
+}
+
+.amount{
+    margin-top:20px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.certification{
+    margin-top:25px;
+    line-height:30px;
+    font-size:15px;
+}
+
+.footer{
+    margin-top:60px;
+    display:flex;
+    justify-content:space-between;
+}
+
+.sign{
+    text-align:center;
+    width:250px;
+}
+
+.print-btn{
+    margin-top:20px;
+    text-align:center;
+}
+
+@media print{
+
+    body{
+        background:white;
+        padding:0;
+    }
+
+    .form-section,
+    .print-btn{
+        display:none;
+    }
+
+    .container{
+        border:none;
+        width:100%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <div>
+            <h2>IFMS 3.0</h2>
+        </div>
+
+        <div class="top-right">
+            <div>
+                Print Date & Time :
+                <span id="printDate"></span>
+            </div>
+
+            <div>
+                Employee ID :
+                <span id="employeeId"></span>
+            </div>
+
+            <div>
+                Page No : 1
+            </div>
+        </div>
+
+    </div>
+
+    <div class="center-title">
+        <h1>यात्रा भत्ता बिल</h1>
+        <h3>TA Bill</h3>
+    </div>
+
+
+    <!-- FORM -->
+
+    <div class="form-section">
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>Submit Date</label>
+                <input type="date" id="submitDate">
+            </div>
+
+            <div class="form-group">
+                <label>Employee ID</label>
+                <input type="text" id="empId">
+            </div>
+
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>Employee Name</label>
+                <input type="text" id="empName">
+            </div>
+
+            <div class="form-group">
+                <label>Post</label>
+                <input type="text" id="post">
+            </div>
+
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>Salary</label>
+                <input type="number" id="salary">
+            </div>
+
+            <div class="form-group">
+                <label>Bill Amount</label>
+                <input type="number" id="amount">
+            </div>
+
+        </div>
+
+        <button onclick="generateBill()">
+            Generate Bill
+        </button>
+
+    </div>
+
+
+    <!-- BILL INFO -->
+
+    <div class="info">
+
+        <div>
+            <strong>नाम :</strong>
+            <span id="showName"></span>
+        </div>
+
+        <div>
+            <strong>बिल माह :</strong>
+            <span id="billMonth"></span>
+        </div>
+
+        <div>
+            <strong>पद :</strong>
+            <span id="showPost"></span>
+        </div>
+
+        <div>
+            <strong>श्रेणी :</strong> E
+        </div>
+
+        <div>
+            <strong>वेतन :</strong>
+            ₹ <span id="showSalary"></span>
+        </div>
+
+        <div>
+            <strong>मुख्यालय :</strong> Jaipur
+        </div>
+
+    </div>
+
+
+    <!-- TABLE -->
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>क्र.सं.</th>
+                <th>स्थान प्रस्थान</th>
+                <th>दिनांक</th>
+                <th>स्थान आगमन</th>
+                <th>दिनांक</th>
+                <th>यात्रा प्रकार</th>
+                <th>दूरी</th>
+                <th>राशि</th>
+                <th>उद्देश्य</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>1</td>
+                <td>Chaksu</td>
+                <td>11/06/2024</td>
+                <td>Jaipur</td>
+                <td>11/06/2024</td>
+                <td>Bus</td>
+                <td>150 KM</td>
+                <td>190</td>
+                <td>SBM Meeting</td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>Jaipur</td>
+                <td>11/06/2024</td>
+                <td>Chaksu</td>
+                <td>11/06/2024</td>
+                <td>Bus</td>
+                <td>150 KM</td>
+                <td>540</td>
+                <td>SBM Meeting</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+    <!-- AMOUNT -->
+
+    <div class="amount">
+
+        शुद्ध राशि जो भुगतान योग्य है :
+        ₹ <span id="showAmount"></span>
+
+    </div>
+
+
+    <!-- CERTIFICATION -->
+
+    <div class="certification">
+
+        <p>
+            1. प्रमाणित किया जाता है कि उक्त यात्रा मैंने वास्तव में की है तथा पूर्व में इस बिल का भुगतान प्राप्त नहीं किया है।
+        </p>
+
+        <p>
+            2. प्रमाणित किया जाता है कि इस बिल में दावा की गई राशि राजस्थान यात्रा भत्ता नियम 1971 के अनुसार है।
+        </p>
+
+        <p>
+            3. प्रमाणित किया जाता है कि मुझे किसी प्रकार की निःशुल्क सरकारी सुविधा प्राप्त नहीं हुई।
+        </p>
+
+    </div>
+
+
+    <!-- SIGNATURE -->
+
+    <div class="footer">
+
+        <div class="sign">
+
+            <br><br><br>
+
+            ____________________
+
+            <br>
+
+            कर्मचारी हस्ताक्षर
+
+        </div>
+
+        <div class="sign">
+
+            <br><br><br>
+
+            ____________________
+
+            <br>
+
+            अधिकारी हस्ताक्षर
+
+        </div>
+
+    </div>
+
+
+    <!-- PRINT -->
+
+    <div class="print-btn">
+
+        <button onclick="window.print()">
+            Print / Save PDF
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function generateBill(){
+
+    let submitDate = document.getElementById("submitDate").value;
+    let empId = document.getElementById("empId").value;
+    let empName = document.getElementById("empName").value;
+    let post = document.getElementById("post").value;
+    let salary = document.getElementById("salary").value;
+    let amount = document.getElementById("amount").value;
+
+    let dateObj = new Date(submitDate);
+
+    let month = dateObj.toLocaleString('default', {
+        month:'long',
+        year:'numeric'
+    });
+
+    let currentTime = new Date().toLocaleString();
+
+    document.getElementById("printDate").innerHTML = currentTime;
+
+    document.getElementById("employeeId").innerHTML = empId;
+
+    document.getElementById("showName").innerHTML = empName;
+
+    document.getElementById("billMonth").innerHTML = month;
+
+    document.getElementById("showPost").innerHTML = post;
+
+    document.getElementById("showSalary").innerHTML = salary;
+
+    document.getElementById("showAmount").innerHTML = amount;
+
+}
+
+</script>
+
+</body>
+</html>
