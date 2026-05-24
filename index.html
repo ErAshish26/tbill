@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="hi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>IFMS TA Bill</title>
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>IFMS 3.0 - TA Bill</title>
 
 <style>
 
@@ -13,179 +17,407 @@
     margin:8mm;
 }
 
+/* RESET */
+
 *{
+    margin:0;
+    padding:0;
     box-sizing:border-box;
 }
 
+/* BODY */
+
 body{
-    margin:0;
-    background:#dcdcdc;
-    font-family:"Noto Sans Devanagari",Arial,sans-serif;
+
+    background:#d9d9d9;
+
+    font-family:
+    "Noto Sans Devanagari",
+    Arial,
+    sans-serif;
+
+    padding:20px;
+
 }
+
+/* WRAPPER */
 
 .wrapper{
+
     width:1120px;
-    margin:20px auto;
+
+    margin:auto;
+
 }
 
+/* TOOLBAR */
+
 .toolbar{
-    background:#fff;
+
+    background:white;
+
     padding:12px;
-    margin-bottom:12px;
+
     border:1px solid #999;
+
+    margin-bottom:15px;
+
 }
 
 .toolbar input{
-    padding:6px;
+
+    padding:7px;
+
     margin:4px;
+
     font-size:13px;
+
 }
 
 .toolbar button{
-    padding:7px 14px;
-    cursor:pointer;
+
+    padding:8px 15px;
+
+    margin:4px;
+
     border:none;
+
+    cursor:pointer;
+
     background:#111;
+
     color:white;
+
+    font-size:13px;
+
 }
+
+/* BILL */
 
 .bill{
-    background:#fff;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:white;
+
     border:1px solid #000;
+
     padding:8px;
+
 }
+
+/* WATERMARK */
+
+.bill::before{
+
+    content:"IFMS 3.0";
+
+    position:absolute;
+
+    top:50%;
+
+    left:50%;
+
+    transform:
+    translate(-50%,-50%)
+    rotate(-32deg);
+
+    font-size:110px;
+
+    font-weight:700;
+
+    color:rgba(0,0,0,0.045);
+
+    letter-spacing:6px;
+
+    white-space:nowrap;
+
+    z-index:0;
+
+    pointer-events:none;
+
+}
+
+/* CONTENT ABOVE WATERMARK */
+
+.bill *{
+
+    position:relative;
+
+    z-index:1;
+
+}
+
+/* TOP */
 
 .top{
+
     display:flex;
+
     justify-content:space-between;
+
     font-size:12px;
-    margin-bottom:4px;
+
+    margin-bottom:5px;
+
 }
 
+/* TITLE */
+
 .center{
+
     text-align:center;
-    line-height:1.1;
+
+    line-height:1.2;
+
 }
 
 .center h2{
-    margin:0;
+
     font-size:21px;
+
 }
 
 .center h3{
-    margin:2px 0 0;
+
     font-size:16px;
-    font-weight:600;
+
+    margin-top:2px;
+
 }
 
+/* INFO TABLE */
+
 .info{
+
     width:100%;
+
     margin-top:8px;
+
     border-collapse:collapse;
+
 }
 
 .info td{
-    padding:2px 4px;
+
+    padding:3px;
+
     font-size:12px;
+
 }
 
+.info input{
+
+    border:none;
+
+    background:transparent;
+
+    font-size:12px;
+
+    width:140px;
+
+}
+
+.info input:focus{
+
+    outline:none;
+
+    background:#eef7ff;
+
+}
+
+/* MAIN TABLE */
+
 .main-table{
+
     width:100%;
+
     border-collapse:collapse;
+
     margin-top:6px;
+
     table-layout:fixed;
+
 }
 
 .main-table th,
 .main-table td{
-    border:1px solid #000;
-    padding:3px;
-    text-align:center;
-    font-size:11px;
-    vertical-align:middle;
-}
 
-.main-table th{
-    font-weight:700;
+    border:1px solid #000;
+
+    padding:3px;
+
+    text-align:center;
+
+    font-size:11px;
+
+    vertical-align:middle;
+
 }
 
 .main-table input{
+
     width:100%;
+
     border:none;
-    font-size:11px;
+
     text-align:center;
-    padding:2px;
+
     background:transparent;
+
+    font-size:11px;
+
+    padding:2px;
+
 }
 
 .main-table input:focus{
+
     outline:none;
-    background:#f0f8ff;
+
+    background:#eef7ff;
+
 }
+
+/* DELETE BUTTON */
 
 .delete-btn{
+
     background:red;
+
     color:white;
+
     border:none;
-    padding:3px 6px;
+
+    padding:3px 7px;
+
     cursor:pointer;
+
 }
+
+/* TOTAL */
 
 .total{
-    margin-top:8px;
+
+    margin-top:10px;
+
     font-size:13px;
+
     font-weight:bold;
+
 }
+
+/* CERTIFICATE */
 
 .cert{
-    margin-top:12px;
+
+    margin-top:14px;
+
     font-size:11px;
-    line-height:1.7;
+
+    line-height:1.8;
+
 }
 
+/* FOOTER */
+
 .footer{
+
     display:flex;
+
     justify-content:space-between;
-    margin-top:40px;
+
+    margin-top:45px;
+
 }
 
 .sign{
+
     width:220px;
+
     text-align:center;
+
     font-size:12px;
+
 }
 
+/* PAGE NUMBER */
+
+.page-number{
+
+    position:fixed;
+
+    bottom:8px;
+
+    right:20px;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+}
+
+/* BUTTONS */
+
 .bottom-btns{
-    margin-top:12px;
+
+    margin-top:15px;
+
 }
 
 .bottom-btns button{
-    padding:8px 16px;
-    margin-right:8px;
-    cursor:pointer;
+
+    padding:9px 18px;
+
     border:none;
+
+    cursor:pointer;
+
     background:#111;
+
     color:white;
+
 }
+
+/* PRINT */
 
 @media print{
 
     body{
+
         background:white;
+
+        -webkit-print-color-adjust:exact;
+
+        print-color-adjust:exact;
+
     }
 
     .toolbar,
     .bottom-btns{
+
         display:none;
+
     }
 
     .wrapper{
+
         width:100%;
-        margin:0;
+
     }
 
     .bill{
+
         border:none;
+
+    }
+
+    .page-number::after{
+
+        content:counter(page);
+
     }
 
 }
@@ -198,18 +430,23 @@ body{
 
 <div class="wrapper">
 
-    <!-- TOP TOOLBAR -->
+    <!-- TOOLBAR -->
 
     <div class="toolbar">
 
-        <input type="date" id="submitDate">
+        <input type="date"
+        id="submitDate">
 
-        <input type="text" id="empId" placeholder="Employee ID">
+        <input type="text"
+        id="empId"
+        placeholder="Employee ID">
 
-        <input type="text" id="empName" placeholder="Employee Name">
+        <input type="text"
+        id="empName"
+        placeholder="Employee Name">
 
         <button onclick="updateHeader()">
-            Update
+            Update Header
         </button>
 
         <button onclick="addRow()">
@@ -221,6 +458,8 @@ body{
     <!-- BILL -->
 
     <div class="bill">
+
+        <!-- TOP -->
 
         <div class="top">
 
@@ -238,13 +477,11 @@ body{
                 Employee ID :
                 <span id="showEmpId"></span>
 
-                <br>
-
-                Page No. : 1
-
             </div>
 
         </div>
+
+        <!-- TITLE -->
 
         <div class="center">
 
@@ -262,16 +499,22 @@ body{
 
                 <td>
                     <b>नाम :</b>
-                    <span id="showName"></span>
+
+                    <input id="nameInput"
+                    value="MAHENDRA SINGH">
                 </td>
 
                 <td>
                     <b>बिल माह :</b>
-                    <span id="billMonth"></span>
+
+                    <input id="monthInput"
+                    value="April / 2026">
                 </td>
 
                 <td>
-                    <b>श्रेणी :</b> E
+                    <b>श्रेणी :</b>
+
+                    <input value="E">
                 </td>
 
             </tr>
@@ -280,17 +523,20 @@ body{
 
                 <td>
                     <b>पद :</b>
-                    Clerk Grade II
+
+                    <input value="Clerk Grade II">
                 </td>
 
                 <td>
                     <b>वेतन :</b>
-                    22000
+
+                    <input value="22000">
                 </td>
 
                 <td>
                     <b>मुख्यालय :</b>
-                    Jaipur
+
+                    <input value="Jaipur">
                 </td>
 
             </tr>
@@ -305,25 +551,45 @@ body{
 
                 <tr>
 
-                    <th style="width:40px;">क्र.सं.</th>
+                    <th style="width:40px;">
+                        क्र.सं.
+                    </th>
 
-                    <th>स्थान प्रस्थान</th>
+                    <th>
+                        स्थान प्रस्थान
+                    </th>
 
-                    <th style="width:90px;">दिनांक</th>
+                    <th style="width:90px;">
+                        दिनांक
+                    </th>
 
-                    <th>स्थान आगमन</th>
+                    <th>
+                        स्थान आगमन
+                    </th>
 
-                    <th style="width:90px;">दिनांक</th>
+                    <th style="width:90px;">
+                        दिनांक
+                    </th>
 
-                    <th style="width:80px;">यात्रा प्रकार</th>
+                    <th style="width:80px;">
+                        यात्रा प्रकार
+                    </th>
 
-                    <th style="width:70px;">दूरी</th>
+                    <th style="width:70px;">
+                        दूरी
+                    </th>
 
-                    <th style="width:70px;">राशि</th>
+                    <th style="width:70px;">
+                        राशि
+                    </th>
 
-                    <th>उद्देश्य</th>
+                    <th>
+                        उद्देश्य
+                    </th>
 
-                    <th style="width:60px;">Delete</th>
+                    <th style="width:60px;">
+                        Delete
+                    </th>
 
                 </tr>
 
@@ -360,7 +626,8 @@ body{
                     </td>
 
                     <td>
-                        <input value="190" class="amount">
+                        <input value="190"
+                        class="amount">
                     </td>
 
                     <td>
@@ -368,10 +635,13 @@ body{
                     </td>
 
                     <td>
-                        <button class="delete-btn"
+
+                        <button
+                        class="delete-btn"
                         onclick="deleteRow(this)">
                         X
                         </button>
+
                     </td>
 
                 </tr>
@@ -405,7 +675,8 @@ body{
                     </td>
 
                     <td>
-                        <input value="540" class="amount">
+                        <input value="540"
+                        class="amount">
                     </td>
 
                     <td>
@@ -413,10 +684,13 @@ body{
                     </td>
 
                     <td>
-                        <button class="delete-btn"
+
+                        <button
+                        class="delete-btn"
                         onclick="deleteRow(this)">
                         X
                         </button>
+
                     </td>
 
                 </tr>
@@ -478,6 +752,14 @@ body{
 
         </div>
 
+        <!-- PAGE NUMBER -->
+
+        <div class="page-number">
+
+            Page No. :
+
+        </div>
+
     </div>
 
     <!-- BUTTONS -->
@@ -485,7 +767,9 @@ body{
     <div class="bottom-btns">
 
         <button onclick="window.print()">
+
             Print / Save PDF
+
         </button>
 
     </div>
@@ -494,32 +778,44 @@ body{
 
 <script>
 
+/* UPDATE HEADER */
+
 function updateHeader(){
 
-    let date = document.getElementById("submitDate").value;
+    let date =
+    document.getElementById("submitDate").value;
 
-    let empId = document.getElementById("empId").value;
+    let empId =
+    document.getElementById("empId").value;
 
-    let empName = document.getElementById("empName").value;
+    let empName =
+    document.getElementById("empName").value;
 
     let d = new Date(date);
 
-    let month = d.toLocaleString('default',{
+    let month =
+    d.toLocaleString('default',{
+
         month:'long',
+
         year:'numeric'
+
     });
 
-    document.getElementById("showEmpId").innerHTML = empId;
+    document.getElementById("showEmpId")
+    .innerHTML = empId;
 
-    document.getElementById("showName").innerHTML = empName;
+    document.getElementById("nameInput")
+    .value = empName;
 
-    document.getElementById("billMonth").innerHTML = month;
+    document.getElementById("monthInput")
+    .value = month;
 
-    document.getElementById("printDate").innerHTML =
+    document.getElementById("printDate")
+    .innerHTML =
     new Date().toLocaleString();
 
 }
-
 
 /* AUTO TOTAL */
 
@@ -541,10 +837,10 @@ function calculateTotal(){
 
 }
 
-
 /* AUTO CALCULATE */
 
-document.addEventListener("input",function(e){
+document.addEventListener("input",
+function(e){
 
     if(e.target.classList.contains("amount")){
 
@@ -553,7 +849,6 @@ document.addEventListener("input",function(e){
     }
 
 });
-
 
 /* ADD ROW */
 
@@ -596,7 +891,8 @@ function addRow(){
         </td>
 
         <td>
-            <input value="0" class="amount">
+            <input value="0"
+            class="amount">
         </td>
 
         <td>
@@ -604,20 +900,24 @@ function addRow(){
         </td>
 
         <td>
-            <button class="delete-btn"
+
+            <button
+            class="delete-btn"
             onclick="deleteRow(this)">
             X
             </button>
+
         </td>
 
     </tr>
 
     `;
 
-    tbody.insertAdjacentHTML("beforeend",row);
+    tbody.insertAdjacentHTML(
+    "beforeend",
+    row);
 
 }
-
 
 /* DELETE ROW */
 
@@ -631,22 +931,22 @@ function deleteRow(btn){
 
 }
 
-
 /* UPDATE SERIAL */
 
 function updateSerial(){
 
     let rows =
-    document.querySelectorAll("#tableBody tr");
+    document.querySelectorAll(
+    "#tableBody tr");
 
     rows.forEach(function(row,index){
 
-        row.cells[0].innerHTML = index + 1;
+        row.cells[0].innerHTML =
+        index + 1;
 
     });
 
 }
-
 
 /* FIRST LOAD */
 
