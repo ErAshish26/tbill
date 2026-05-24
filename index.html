@@ -523,6 +523,75 @@ body{
         content:counter(page);
 
     }
+    
+/* DIGITAL SIGN BOX */
+
+.digital-sign-box{
+
+    margin-top:25px;
+
+    border-top:1px solid #000;
+
+    padding-top:15px;
+
+    text-align:right;
+
+}
+
+
+/* PIN INPUT */
+
+.digital-sign-box input{
+
+    padding:7px;
+
+    width:180px;
+
+    font-size:12px;
+
+}
+
+
+/* BUTTON */
+
+.digital-sign-box button{
+
+    padding:7px 14px;
+
+    border:none;
+
+    background:#111;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+
+/* RESULT */
+
+.signature-result{
+
+    margin-top:15px;
+
+    font-size:12px;
+
+    line-height:1.8;
+
+}
+
+
+/* GREEN VERIFIED */
+
+#signedText{
+
+    color:green;
+
+    font-weight:bold;
+
+}
+
 
 }
 
@@ -845,6 +914,45 @@ body{
             <div class="sign">
 
                 <br><br>
+<!-- DIGITAL SIGN SECTION -->
+
+<div class="digital-sign-box">
+
+    <h3>Digital Signature</h3>
+
+    <!-- CREATE PIN -->
+
+    <input
+    type="password"
+    id="userPin"
+    placeholder="Create 4 Digit PIN"
+    maxlength="4">
+
+    <button onclick="applySignature()">
+
+        Apply Signature
+
+    </button>
+
+    <!-- SIGN RESULT -->
+
+    <div id="signatureResult"
+    class="signature-result">
+
+        <img
+        id="tickImg"
+        src="https://cdn-icons-png.flaticon.com/512/845/845646.png"
+        width="28"
+        style="display:none;">
+
+        <div id="signedText"></div>
+
+        <div id="signDateTime"></div>
+
+    </div>
+
+</div>
+
 
                 ____________________
 
@@ -855,6 +963,67 @@ body{
             </div>
 
         </div>
+
+<!-- PLACE ABOVE PAGE NUMBER -->
+
+<div class="footer">
+
+    <div class="sign">
+
+        ____________________
+
+        <br>
+
+        कर्मचारी हस्ताक्षर
+
+    </div>
+
+    <div class="sign">
+
+        ____________________
+
+        <br>
+
+        अधिकारी हस्ताक्षर
+
+    </div>
+
+</div>
+
+<!-- DIGITAL SIGN -->
+
+<div class="digital-sign-box">
+
+    <h3>Digital Signature</h3>
+
+    <input
+    type="password"
+    id="userPin"
+    placeholder="Create 4 Digit PIN"
+    maxlength="4">
+
+    <button onclick="applySignature()">
+
+        Apply Signature
+
+    </button>
+
+    <div id="signatureResult"
+    class="signature-result">
+
+        <img
+        id="tickImg"
+        src="https://cdn-icons-png.flaticon.com/512/845/845646.png"
+        width="28"
+        style="display:none;">
+
+        <div id="signedText"></div>
+
+        <div id="signDateTime"></div>
+
+    </div>
+
+</div>
 
         <!-- PAGE NUMBER -->
 
@@ -890,6 +1059,47 @@ body{
 <script>
 
 /* UPDATE HEADER */
+    
+/* APPLY DIGITAL SIGN */
+
+function applySignature(){
+
+    let pin =
+    document.getElementById("userPin").value;
+
+    if(pin.length !== 4){
+
+        alert("Enter 4 Digit PIN");
+
+        return;
+
+    }
+
+    /* SHOW TICK */
+
+    document.getElementById("tickImg")
+    .style.display = "inline-block";
+
+    /* SIGN TEXT */
+
+    document.getElementById("signedText")
+    .innerHTML =
+
+    "Digitally Signed & Verified";
+
+    /* DATE TIME */
+
+    let now = new Date();
+
+    let dateTime = now.toLocaleString();
+
+    document.getElementById("signDateTime")
+    .innerHTML =
+
+    "Signed On : " + dateTime;
+
+}
+
 
 function updateHeader(){
 
