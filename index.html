@@ -14,7 +14,40 @@ content="width=device-width, initial-scale=1.0">
     
 /* HIDE DELETE BUTTON IN PRINT */
 
+
+/* REMOVE COMPLETE DELETE COLUMN IN PRINT */
+
 @media print{
+
+    /* DELETE HEADER */
+
+    .main-table th:last-child{
+
+        display:none !important;
+
+        width:0 !important;
+
+        padding:0 !important;
+
+        border:none !important;
+
+    }
+
+    /* DELETE TD */
+
+    .main-table td:last-child{
+
+        display:none !important;
+
+        width:0 !important;
+
+        padding:0 !important;
+
+        border:none !important;
+
+    }
+
+    /* DELETE BUTTON */
 
     .delete-btn{
 
@@ -23,6 +56,7 @@ content="width=device-width, initial-scale=1.0">
     }
 
 }
+
 
 
 .wrapper{
