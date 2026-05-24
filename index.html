@@ -1,415 +1,488 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TA Bill</title>
+
+<title>IFMS TA Bill</title>
 
 <style>
 
+@page{
+    size:A4;
+    margin:8mm;
+}
+
 *{
-    margin:0;
-    padding:0;
     box-sizing:border-box;
-    font-family: Arial, sans-serif;
 }
 
 body{
-    background:#e5e5e5;
-    padding:20px;
+    margin:0;
+    background:#dcdcdc;
+    font-family:"Noto Sans Devanagari",Arial,sans-serif;
 }
 
-.container{
-    width:1100px;
-    margin:auto;
+.wrapper{
+    width:1120px;
+    margin:20px auto;
+}
+
+.toolbar{
     background:#fff;
-    padding:25px;
-    border:2px solid #000;
+    padding:12px;
+    margin-bottom:12px;
+    border:1px solid #999;
 }
 
-.header{
+.toolbar input{
+    padding:6px;
+    margin:4px;
+    font-size:13px;
+}
+
+.toolbar button{
+    padding:7px 14px;
+    cursor:pointer;
+    border:none;
+    background:#111;
+    color:white;
+}
+
+.bill{
+    background:#fff;
+    border:1px solid #000;
+    padding:8px;
+}
+
+.top{
     display:flex;
     justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
+    font-size:12px;
+    margin-bottom:4px;
 }
 
-.header h2{
-    font-size:28px;
-}
-
-.top-right{
-    text-align:right;
-    font-size:14px;
-}
-
-.center-title{
+.center{
     text-align:center;
-    margin-bottom:20px;
+    line-height:1.1;
 }
 
-.center-title h1{
-    font-size:30px;
+.center h2{
+    margin:0;
+    font-size:21px;
 }
 
-.center-title h3{
-    font-size:22px;
-    margin-top:5px;
-}
-
-.form-section{
-    background:#f7f7f7;
-    padding:15px;
-    border:1px solid #999;
-    margin-bottom:25px;
-}
-
-.form-row{
-    display:flex;
-    gap:15px;
-    margin-bottom:12px;
-}
-
-.form-group{
-    flex:1;
-}
-
-.form-group label{
-    display:block;
-    margin-bottom:5px;
-    font-weight:bold;
-}
-
-.form-group input{
-    width:100%;
-    padding:8px;
-    border:1px solid #999;
-}
-
-button{
-    padding:10px 20px;
-    background:#000;
-    color:white;
-    border:none;
-    cursor:pointer;
+.center h3{
+    margin:2px 0 0;
+    font-size:16px;
+    font-weight:600;
 }
 
 .info{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-    margin-bottom:20px;
+    width:100%;
+    margin-top:8px;
+    border-collapse:collapse;
 }
 
-.info div{
-    border:1px solid #999;
-    padding:10px;
+.info td{
+    padding:2px 4px;
+    font-size:12px;
 }
 
-table{
+.main-table{
     width:100%;
     border-collapse:collapse;
-    margin-top:15px;
+    margin-top:6px;
+    table-layout:fixed;
 }
 
-table th,
-table td{
+.main-table th,
+.main-table td{
     border:1px solid #000;
-    padding:8px;
+    padding:3px;
     text-align:center;
-    font-size:14px;
+    font-size:11px;
+    vertical-align:middle;
 }
 
-table th{
-    background:#efefef;
+.main-table th{
+    font-weight:700;
 }
 
-.amount{
-    margin-top:20px;
-    font-size:20px;
+.main-table input{
+    width:100%;
+    border:none;
+    font-size:11px;
+    text-align:center;
+    padding:2px;
+    background:transparent;
+}
+
+.main-table input:focus{
+    outline:none;
+    background:#f0f8ff;
+}
+
+.delete-btn{
+    background:red;
+    color:white;
+    border:none;
+    padding:3px 6px;
+    cursor:pointer;
+}
+
+.total{
+    margin-top:8px;
+    font-size:13px;
     font-weight:bold;
 }
 
-.certification{
-    margin-top:25px;
-    line-height:30px;
-    font-size:15px;
+.cert{
+    margin-top:12px;
+    font-size:11px;
+    line-height:1.7;
 }
 
 .footer{
-    margin-top:60px;
     display:flex;
     justify-content:space-between;
+    margin-top:40px;
 }
 
 .sign{
+    width:220px;
     text-align:center;
-    width:250px;
+    font-size:12px;
 }
 
-.print-btn{
-    margin-top:20px;
-    text-align:center;
+.bottom-btns{
+    margin-top:12px;
+}
+
+.bottom-btns button{
+    padding:8px 16px;
+    margin-right:8px;
+    cursor:pointer;
+    border:none;
+    background:#111;
+    color:white;
 }
 
 @media print{
 
     body{
         background:white;
-        padding:0;
     }
 
-    .form-section,
-    .print-btn{
+    .toolbar,
+    .bottom-btns{
         display:none;
     }
 
-    .container{
-        border:none;
+    .wrapper{
         width:100%;
+        margin:0;
+    }
+
+    .bill{
+        border:none;
     }
 
 }
 
 </style>
+
 </head>
 
 <body>
 
-<div class="container">
+<div class="wrapper">
 
-    <div class="header">
+    <!-- TOP TOOLBAR -->
 
-        <div>
-            <h2>IFMS 3.0</h2>
-        </div>
+    <div class="toolbar">
 
-        <div class="top-right">
-            <div>
-                Print Date & Time :
-                <span id="printDate"></span>
-            </div>
+        <input type="date" id="submitDate">
 
-            <div>
-                Employee ID :
-                <span id="employeeId"></span>
-            </div>
+        <input type="text" id="empId" placeholder="Employee ID">
 
-            <div>
-                Page No : 1
-            </div>
-        </div>
+        <input type="text" id="empName" placeholder="Employee Name">
 
-    </div>
+        <button onclick="updateHeader()">
+            Update
+        </button>
 
-    <div class="center-title">
-        <h1>यात्रा भत्ता बिल</h1>
-        <h3>TA Bill</h3>
-    </div>
-
-
-    <!-- FORM -->
-
-    <div class="form-section">
-
-        <div class="form-row">
-
-            <div class="form-group">
-                <label>Submit Date</label>
-                <input type="date" id="submitDate">
-            </div>
-
-            <div class="form-group">
-                <label>Employee ID</label>
-                <input type="text" id="empId">
-            </div>
-
-        </div>
-
-        <div class="form-row">
-
-            <div class="form-group">
-                <label>Employee Name</label>
-                <input type="text" id="empName">
-            </div>
-
-            <div class="form-group">
-                <label>Post</label>
-                <input type="text" id="post">
-            </div>
-
-        </div>
-
-        <div class="form-row">
-
-            <div class="form-group">
-                <label>Salary</label>
-                <input type="number" id="salary">
-            </div>
-
-            <div class="form-group">
-                <label>Bill Amount</label>
-                <input type="number" id="amount">
-            </div>
-
-        </div>
-
-        <button onclick="generateBill()">
-            Generate Bill
+        <button onclick="addRow()">
+            Add Row
         </button>
 
     </div>
 
+    <!-- BILL -->
 
-    <!-- BILL INFO -->
+    <div class="bill">
 
-    <div class="info">
+        <div class="top">
 
-        <div>
-            <strong>नाम :</strong>
-            <span id="showName"></span>
+            <div>
+                <b>IFMS 3.0</b>
+            </div>
+
+            <div>
+
+                Print Date & Time :
+                <span id="printDate"></span>
+
+                <br>
+
+                Employee ID :
+                <span id="showEmpId"></span>
+
+                <br>
+
+                Page No. : 1
+
+            </div>
+
         </div>
 
-        <div>
-            <strong>बिल माह :</strong>
-            <span id="billMonth"></span>
+        <div class="center">
+
+            <h2>यात्रा भत्ता बिल</h2>
+
+            <h3>TA Bill</h3>
+
         </div>
 
-        <div>
-            <strong>पद :</strong>
-            <span id="showPost"></span>
-        </div>
+        <!-- INFO -->
 
-        <div>
-            <strong>श्रेणी :</strong> E
-        </div>
-
-        <div>
-            <strong>वेतन :</strong>
-            ₹ <span id="showSalary"></span>
-        </div>
-
-        <div>
-            <strong>मुख्यालय :</strong> Jaipur
-        </div>
-
-    </div>
-
-
-    <!-- TABLE -->
-
-    <table>
-
-        <thead>
+        <table class="info">
 
             <tr>
-                <th>क्र.सं.</th>
-                <th>स्थान प्रस्थान</th>
-                <th>दिनांक</th>
-                <th>स्थान आगमन</th>
-                <th>दिनांक</th>
-                <th>यात्रा प्रकार</th>
-                <th>दूरी</th>
-                <th>राशि</th>
-                <th>उद्देश्य</th>
-            </tr>
 
-        </thead>
+                <td>
+                    <b>नाम :</b>
+                    <span id="showName"></span>
+                </td>
 
-        <tbody>
+                <td>
+                    <b>बिल माह :</b>
+                    <span id="billMonth"></span>
+                </td>
 
-            <tr>
-                <td>1</td>
-                <td>Chaksu</td>
-                <td>11/06/2024</td>
-                <td>Jaipur</td>
-                <td>11/06/2024</td>
-                <td>Bus</td>
-                <td>150 KM</td>
-                <td>190</td>
-                <td>SBM Meeting</td>
+                <td>
+                    <b>श्रेणी :</b> E
+                </td>
+
             </tr>
 
             <tr>
-                <td>2</td>
-                <td>Jaipur</td>
-                <td>11/06/2024</td>
-                <td>Chaksu</td>
-                <td>11/06/2024</td>
-                <td>Bus</td>
-                <td>150 KM</td>
-                <td>540</td>
-                <td>SBM Meeting</td>
+
+                <td>
+                    <b>पद :</b>
+                    Clerk Grade II
+                </td>
+
+                <td>
+                    <b>वेतन :</b>
+                    22000
+                </td>
+
+                <td>
+                    <b>मुख्यालय :</b>
+                    Jaipur
+                </td>
+
             </tr>
 
-        </tbody>
+        </table>
 
-    </table>
+        <!-- MAIN TABLE -->
 
+        <table class="main-table">
 
-    <!-- AMOUNT -->
+            <thead>
 
-    <div class="amount">
+                <tr>
 
-        शुद्ध राशि जो भुगतान योग्य है :
-        ₹ <span id="showAmount"></span>
+                    <th style="width:40px;">क्र.सं.</th>
 
-    </div>
+                    <th>स्थान प्रस्थान</th>
 
+                    <th style="width:90px;">दिनांक</th>
 
-    <!-- CERTIFICATION -->
+                    <th>स्थान आगमन</th>
 
-    <div class="certification">
+                    <th style="width:90px;">दिनांक</th>
 
-        <p>
-            1. प्रमाणित किया जाता है कि उक्त यात्रा मैंने वास्तव में की है तथा पूर्व में इस बिल का भुगतान प्राप्त नहीं किया है।
-        </p>
+                    <th style="width:80px;">यात्रा प्रकार</th>
 
-        <p>
-            2. प्रमाणित किया जाता है कि इस बिल में दावा की गई राशि राजस्थान यात्रा भत्ता नियम 1971 के अनुसार है।
-        </p>
+                    <th style="width:70px;">दूरी</th>
 
-        <p>
-            3. प्रमाणित किया जाता है कि मुझे किसी प्रकार की निःशुल्क सरकारी सुविधा प्राप्त नहीं हुई।
-        </p>
+                    <th style="width:70px;">राशि</th>
 
-    </div>
+                    <th>उद्देश्य</th>
 
+                    <th style="width:60px;">Delete</th>
 
-    <!-- SIGNATURE -->
+                </tr>
 
-    <div class="footer">
+            </thead>
 
-        <div class="sign">
+            <tbody id="tableBody">
 
-            <br><br><br>
+                <tr>
 
-            ____________________
+                    <td>1</td>
 
-            <br>
+                    <td>
+                        <input value="Chaksu">
+                    </td>
 
-            कर्मचारी हस्ताक्षर
+                    <td>
+                        <input value="11/06/24">
+                    </td>
+
+                    <td>
+                        <input value="Jaipur">
+                    </td>
+
+                    <td>
+                        <input value="11/06/24">
+                    </td>
+
+                    <td>
+                        <input value="Bus">
+                    </td>
+
+                    <td>
+                        <input value="150">
+                    </td>
+
+                    <td>
+                        <input value="190" class="amount">
+                    </td>
+
+                    <td>
+                        <input value="SBM Meeting">
+                    </td>
+
+                    <td>
+                        <button class="delete-btn"
+                        onclick="deleteRow(this)">
+                        X
+                        </button>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>2</td>
+
+                    <td>
+                        <input value="Jaipur">
+                    </td>
+
+                    <td>
+                        <input value="11/06/24">
+                    </td>
+
+                    <td>
+                        <input value="Chaksu">
+                    </td>
+
+                    <td>
+                        <input value="11/06/24">
+                    </td>
+
+                    <td>
+                        <input value="Bus">
+                    </td>
+
+                    <td>
+                        <input value="150">
+                    </td>
+
+                    <td>
+                        <input value="540" class="amount">
+                    </td>
+
+                    <td>
+                        <input value="SBM Meeting">
+                    </td>
+
+                    <td>
+                        <button class="delete-btn"
+                        onclick="deleteRow(this)">
+                        X
+                        </button>
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <!-- TOTAL -->
+
+        <div class="total">
+
+            शुद्ध राशि जो भुगतान योग्य है :
+            ₹ <span id="grandTotal">730.00</span>
 
         </div>
 
-        <div class="sign">
+        <!-- CERTIFICATE -->
 
-            <br><br><br>
+        <div class="cert">
 
-            ____________________
+            1. प्रमाणित किया जाता है कि उक्त यात्रा मैंने वास्तव में की है तथा पूर्व में इस बिल का भुगतान प्राप्त नहीं किया है।<br>
 
-            <br>
+            2. प्रमाणित किया जाता है कि इस बिल में दावा की गई राशि राजस्थान यात्रा भत्ता नियम 1971 के अनुसार है।<br>
 
-            अधिकारी हस्ताक्षर
+            3. प्रमाणित किया जाता है कि मुझे किसी प्रकार की निःशुल्क सरकारी सुविधा प्राप्त नहीं हुई।<br>
+
+            4. प्रमाणित किया जाता है कि यह यात्रा विभागीय कार्य हेतु की गई है।
+
+        </div>
+
+        <!-- SIGN -->
+
+        <div class="footer">
+
+            <div class="sign">
+
+                <br><br>
+
+                ____________________
+
+                <br>
+
+                कर्मचारी हस्ताक्षर
+
+            </div>
+
+            <div class="sign">
+
+                <br><br>
+
+                ____________________
+
+                <br>
+
+                अधिकारी हस्ताक्षर
+
+            </div>
 
         </div>
 
     </div>
 
+    <!-- BUTTONS -->
 
-    <!-- PRINT -->
-
-    <div class="print-btn">
+    <div class="bottom-btns">
 
         <button onclick="window.print()">
             Print / Save PDF
@@ -419,42 +492,165 @@ table th{
 
 </div>
 
-
 <script>
 
-function generateBill(){
+function updateHeader(){
 
-    let submitDate = document.getElementById("submitDate").value;
+    let date = document.getElementById("submitDate").value;
+
     let empId = document.getElementById("empId").value;
+
     let empName = document.getElementById("empName").value;
-    let post = document.getElementById("post").value;
-    let salary = document.getElementById("salary").value;
-    let amount = document.getElementById("amount").value;
 
-    let dateObj = new Date(submitDate);
+    let d = new Date(date);
 
-    let month = dateObj.toLocaleString('default', {
+    let month = d.toLocaleString('default',{
         month:'long',
         year:'numeric'
     });
 
-    let currentTime = new Date().toLocaleString();
-
-    document.getElementById("printDate").innerHTML = currentTime;
-
-    document.getElementById("employeeId").innerHTML = empId;
+    document.getElementById("showEmpId").innerHTML = empId;
 
     document.getElementById("showName").innerHTML = empName;
 
     document.getElementById("billMonth").innerHTML = month;
 
-    document.getElementById("showPost").innerHTML = post;
-
-    document.getElementById("showSalary").innerHTML = salary;
-
-    document.getElementById("showAmount").innerHTML = amount;
+    document.getElementById("printDate").innerHTML =
+    new Date().toLocaleString();
 
 }
+
+
+/* AUTO TOTAL */
+
+function calculateTotal(){
+
+    let amounts =
+    document.querySelectorAll(".amount");
+
+    let total = 0;
+
+    amounts.forEach(function(input){
+
+        total += Number(input.value) || 0;
+
+    });
+
+    document.getElementById("grandTotal")
+    .innerHTML = total.toFixed(2);
+
+}
+
+
+/* AUTO CALCULATE */
+
+document.addEventListener("input",function(e){
+
+    if(e.target.classList.contains("amount")){
+
+        calculateTotal();
+
+    }
+
+});
+
+
+/* ADD ROW */
+
+function addRow(){
+
+    let tbody =
+    document.getElementById("tableBody");
+
+    let rowCount =
+    tbody.rows.length + 1;
+
+    let row = `
+
+    <tr>
+
+        <td>${rowCount}</td>
+
+        <td>
+            <input>
+        </td>
+
+        <td>
+            <input>
+        </td>
+
+        <td>
+            <input>
+        </td>
+
+        <td>
+            <input>
+        </td>
+
+        <td>
+            <input value="Bus">
+        </td>
+
+        <td>
+            <input value="0">
+        </td>
+
+        <td>
+            <input value="0" class="amount">
+        </td>
+
+        <td>
+            <input>
+        </td>
+
+        <td>
+            <button class="delete-btn"
+            onclick="deleteRow(this)">
+            X
+            </button>
+        </td>
+
+    </tr>
+
+    `;
+
+    tbody.insertAdjacentHTML("beforeend",row);
+
+}
+
+
+/* DELETE ROW */
+
+function deleteRow(btn){
+
+    btn.closest("tr").remove();
+
+    updateSerial();
+
+    calculateTotal();
+
+}
+
+
+/* UPDATE SERIAL */
+
+function updateSerial(){
+
+    let rows =
+    document.querySelectorAll("#tableBody tr");
+
+    rows.forEach(function(row,index){
+
+        row.cells[0].innerHTML = index + 1;
+
+    });
+
+}
+
+
+/* FIRST LOAD */
+
+calculateTotal();
 
 </script>
 
