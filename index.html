@@ -1015,6 +1015,84 @@ function updateSerial(){
 /* FIRST LOAD */
 
 calculateTotal();
+    
+/* PDF PREVIEW */
+
+function previewPDF(){
+
+    let originalTitle =
+    document.title;
+
+    document.title = "IFMS_TA_Bill";
+
+    let printContents =
+    document.querySelector(".bill").outerHTML;
+
+    let win =
+    window.open("", "", "width=1200,height=800");
+
+    win.document.write(`
+
+    <html>
+
+    <head>
+
+    <title>Preview PDF</title>
+
+    <style>
+
+    @page{
+        size:A4 landscape;
+        margin:8mm;
+    }
+
+    body{
+        font-family:
+        Arial,
+        sans-serif;
+        margin:0;
+        padding:10px;
+    }
+
+    </style>
+
+    </head>
+
+    <body>
+
+    ${printContents}
+
+    <script>
+
+    window.onload = function(){
+
+        window.print();
+
+    }
+
+    <\/script>
+
+    </body>
+
+    </html>
+
+    `);
+
+    win.document.close();
+
+}
+
+
+/* CLOSE */
+
+function closePreview(){
+
+    document.getElementById(
+    "previewModal"
+    ).style.display = "none";
+
+}
+
 
 </script>
 
