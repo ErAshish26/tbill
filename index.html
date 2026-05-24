@@ -1455,6 +1455,81 @@ function deleteRow(btn){
 
 }
 
+/* APPLY DIGITAL SIGN */
+
+function applySignature(){
+
+    let empName =
+    document.getElementById("nameInput")
+    .value.trim();
+
+    if(empName === ""){
+
+        alert(
+        "Please Enter Employee Name First"
+        );
+
+        return;
+
+    }
+
+    let pin =
+    document.getElementById("userPin")
+    .value;
+
+    if(pin.length !== 4){
+
+        alert(
+        "Enter Valid 4 Digit PIN"
+        );
+
+        return;
+
+    }
+
+    let now =
+    new Date().toLocaleString();
+
+    /* SHOW ONLY SIGN RESULT */
+
+    document.getElementById(
+    "employeeSign"
+    ).innerHTML = `
+
+    <div style="
+    color:green;
+    font-weight:bold;
+    font-size:14px;
+    line-height:1.8;
+    ">
+
+        ✔ Digitally Signed
+
+    </div>
+
+    <div style="
+    font-size:13px;
+    font-weight:bold;
+    ">
+
+        ${empName}
+
+    </div>
+
+    <div style="
+    font-size:11px;
+    color:#555;
+    ">
+
+        Signed On :
+        ${now}
+
+    </div>
+
+    `;
+
+}
+
 
 
 
