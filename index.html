@@ -1143,17 +1143,110 @@ function closePreview(){
 
 /* MANUAL PAGE NUMBER */
 
+
+/* AUTO PAGE NUMBER WORKING */
+
 window.onload = function(){
 
-    let pages =
-    document.querySelectorAll(".page-number");
+    updatePageNumbers();
 
-    pages.forEach(function(p,index){
+};
 
-        p.innerHTML =
-        "Page No. : " + (index + 1);
 
-    });
+/* CALCULATE PAGE */
+
+function updatePageNumbers(){
+
+    let contentHeight =
+    document.body.scrollHeight;
+
+    let pageHeight = 1122; // A4 landscape approx px
+
+    let totalPages =
+    Math.ceil(contentHeight / pageHeight);
+
+    let pageBox =
+    document.getElementById("pageNumber");
+
+    pageBox.innerHTML =
+    "Page No. : 1 / " + totalPages;
+
+}
+
+
+/* UPDATE AFTER ROW ADD */
+
+function addRow(){
+
+    let tbody =
+    document.getElementById("tableBody");
+
+    let rowCount =
+    tbody.rows.length + 1;
+
+    let row = `
+
+    <tr>
+
+        <td>${rowCount}</td>
+
+        <td><input></td>
+
+        <td><input></td>
+
+        <td><input></td>
+
+        <td><input></td>
+
+        <td><input value="Bus"></td>
+
+        <td><input value="0"></td>
+
+        <td>
+            <input value="0"
+            class="amount">
+        </td>
+
+        <td><input></td>
+
+        <td>
+
+            <button
+            class="delete-btn"
+            onclick="deleteRow(this)">
+            X
+            </button>
+
+        </td>
+
+    </tr>
+
+    `;
+
+    tbody.insertAdjacentHTML(
+    "beforeend",
+    row);
+
+    updateSerial();
+
+    calculateTotal();
+
+    updatePageNumbers();
+
+}
+
+
+/* DELETE */
+
+function deleteRow(btn){
+
+    btn.closest("tr").remove();
+
+    updateSerial();
+
+    calculateTotal();
+
+    updatePageNumbers();
 
 }
 
