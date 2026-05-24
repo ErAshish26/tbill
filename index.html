@@ -1139,6 +1139,26 @@ function closePreview(){
     ).style.display = "none";
 
 }
+<script>
+
+/* MANUAL PAGE NUMBER */
+
+window.onload = function(){
+
+    let pages =
+    document.querySelectorAll(".page-number");
+
+    pages.forEach(function(p,index){
+
+        p.innerHTML =
+        "Page No. : " + (index + 1);
+
+    });
+
+}
+
+</script>
+
 
 
 </script>
