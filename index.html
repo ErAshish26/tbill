@@ -8,77 +8,14 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>IFMS 3.0 - TA Bill</title>
+<title>IFMS 3.0 TA Bill</title>
 
 <style>
-    
 
-/* HIDE DIGITAL SIGN PANEL IN PRINT */
-
-@media print{
-
-    .digital-sign-box{
-
-        display:none !important;
-
-    }
-
+@page{
+    size:A4 landscape;
+    margin:8mm;
 }
-
-
-/* REMOVE COMPLETE DELETE COLUMN IN PRINT */
-
-@media print{
-
-    /* DELETE HEADER */
-
-    .main-table th:last-child{
-
-        display:none !important;
-
-        width:0 !important;
-
-        padding:0 !important;
-
-        border:none !important;
-
-    }
-
-    /* DELETE TD */
-
-    .main-table td:last-child{
-
-        display:none !important;
-
-        width:0 !important;
-
-        padding:0 !important;
-
-        border:none !important;
-
-    }
-
-    /* DELETE BUTTON */
-
-    .delete-btn{
-
-        display:none !important;
-
-    }
-
-}
-
-
-
-.wrapper{
-
-    width:1550px;
-
-    margin:auto;
-
-}
-
-/* RESET */
 
 *{
     margin:0;
@@ -86,61 +23,9 @@ content="width=device-width, initial-scale=1.0">
     box-sizing:border-box;
 }
 
-<!-- PDF PREVIEW MODAL -->
-
-<div id="previewModal"
-style="
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.7);
-z-index:99999;
-">
-
-    <div style="
-    width:95%;
-    height:95%;
-    background:white;
-    margin:1% auto;
-    position:relative;
-    ">
-
-        <button
-        onclick="closePreview()"
-        style="
-        position:absolute;
-        top:10px;
-        right:10px;
-        z-index:999;
-        padding:8px 15px;
-        cursor:pointer;
-        ">
-
-        Close
-
-        </button>
-
-        <iframe
-        id="pdfFrame"
-        style="
-        width:100%;
-        height:100%;
-        border:none;
-        ">
-        </iframe>
-
-    </div>
-
-</div>
-
-/* BODY */
-
 body{
 
-    background:#d9d9d9;
+    background:#dcdcdc;
 
     font-family:
     "Noto Sans Devanagari",
@@ -151,13 +36,13 @@ body{
 
 }
 
-/* WRAPPER */
-
 .wrapper{
 
-    width:1120px;
+    width:1550px;
 
     margin:auto;
+
+    overflow:auto;
 
 }
 
@@ -187,7 +72,7 @@ body{
 
 .toolbar button{
 
-    padding:8px 15px;
+    padding:8px 16px;
 
     margin:4px;
 
@@ -217,6 +102,9 @@ body{
 
     padding:8px;
 
+    box-shadow:
+    0 0 8px rgba(0,0,0,.15);
+
 }
 
 /* WATERMARK */
@@ -235,23 +123,23 @@ body{
     translate(-50%,-50%)
     rotate(-32deg);
 
-    font-size:110px;
+    font-size:120px;
 
     font-weight:700;
 
     color:rgba(0,0,0,0.045);
 
-    letter-spacing:6px;
-
-    white-space:nowrap;
+    letter-spacing:8px;
 
     z-index:0;
+
+    white-space:nowrap;
 
     pointer-events:none;
 
 }
 
-/* CONTENT ABOVE WATERMARK */
+/* CONTENT */
 
 .bill *{
 
@@ -273,9 +161,13 @@ body{
 
     margin-bottom:5px;
 
+    border-bottom:1px solid #000;
+
+    padding-bottom:5px;
+
 }
 
-/* TITLE */
+/* CENTER */
 
 .center{
 
@@ -287,7 +179,7 @@ body{
 
 .center h2{
 
-    font-size:21px;
+    font-size:22px;
 
 }
 
@@ -325,9 +217,9 @@ body{
 
     background:transparent;
 
-    font-size:12px;
-
     width:140px;
+
+    font-size:12px;
 
 }
 
@@ -347,7 +239,7 @@ body{
 
     border-collapse:collapse;
 
-    margin-top:6px;
+    margin-top:8px;
 
     table-layout:fixed;
 
@@ -366,6 +258,16 @@ body{
 
     vertical-align:middle;
 
+    height:32px;
+
+}
+
+.main-table thead th{
+
+    background:#f2f2f2;
+
+    font-weight:bold;
+
 }
 
 .main-table input{
@@ -374,9 +276,9 @@ body{
 
     border:none;
 
-    text-align:center;
-
     background:transparent;
+
+    text-align:center;
 
     font-size:11px;
 
@@ -414,7 +316,11 @@ body{
 
     margin-top:10px;
 
-    font-size:13px;
+    text-align:right;
+
+    padding-right:20px;
+
+    font-size:14px;
 
     font-weight:bold;
 
@@ -429,6 +335,8 @@ body{
     font-size:11px;
 
     line-height:1.8;
+
+    text-align:justify;
 
 }
 
@@ -446,11 +354,45 @@ body{
 
 .sign{
 
-    width:220px;
+    width:260px;
 
     text-align:center;
 
     font-size:12px;
+
+    padding-top:20px;
+
+}
+
+/* DIGITAL SIGN PANEL */
+
+.digital-sign-box{
+
+    margin-top:20px;
+
+    text-align:right;
+
+}
+
+.digital-sign-box input{
+
+    padding:7px;
+
+    width:180px;
+
+}
+
+.digital-sign-box button{
+
+    padding:8px 15px;
+
+    border:none;
+
+    background:#111;
+
+    color:white;
+
+    cursor:pointer;
 
 }
 
@@ -460,7 +402,7 @@ body{
 
     position:fixed;
 
-    bottom:8px;
+    bottom:5px;
 
     left:50%;
 
@@ -470,7 +412,9 @@ body{
 
     font-weight:bold;
 
-    z-index:9999;
+    background:white;
+
+    padding:2px 10px;
 
 }
 
@@ -488,11 +432,21 @@ body{
 
     border:none;
 
-    cursor:pointer;
-
     background:#111;
 
     color:white;
+
+    cursor:pointer;
+
+    margin-right:8px;
+
+}
+
+/* HOVER */
+
+.main-table tr:hover{
+
+    background:#f8fbff;
 
 }
 
@@ -511,9 +465,10 @@ body{
     }
 
     .toolbar,
-    .bottom-btns{
+    .bottom-btns,
+    .digital-sign-box{
 
-        display:none;
+        display:none !important;
 
     }
 
@@ -527,82 +482,36 @@ body{
 
         border:none;
 
-    }
-
-    .page-number::after{
-
-        content:counter(page);
+        box-shadow:none;
 
     }
-    
-/* DIGITAL SIGN BOX */
 
-.digital-sign-box{
+    input{
 
-    margin-top:25px;
+        border:none !important;
 
-    border-top:1px solid #000;
+        background:transparent !important;
 
-    padding-top:15px;
+    }
 
-    text-align:right;
+    .main-table th:last-child,
+    .main-table td:last-child{
 
-}
+        display:none !important;
 
+        width:0 !important;
 
-/* PIN INPUT */
+        padding:0 !important;
 
-.digital-sign-box input{
+        border:none !important;
 
-    padding:7px;
+    }
 
-    width:180px;
+    .delete-btn{
 
-    font-size:12px;
+        display:none !important;
 
-}
-
-
-/* BUTTON */
-
-.digital-sign-box button{
-
-    padding:7px 14px;
-
-    border:none;
-
-    background:#111;
-
-    color:white;
-
-    cursor:pointer;
-
-}
-
-
-/* RESULT */
-
-.signature-result{
-
-    margin-top:15px;
-
-    font-size:12px;
-
-    line-height:1.8;
-
-}
-
-
-/* GREEN VERIFIED */
-
-#signedText{
-
-    color:green;
-
-    font-weight:bold;
-
-}
-
+    }
 
 }
 
@@ -630,11 +539,15 @@ body{
         placeholder="Employee Name">
 
         <button onclick="updateHeader()">
+
             Update Header
+
         </button>
 
         <button onclick="addRow()">
+
             Add Row
+
         </button>
 
     </div>
@@ -648,7 +561,9 @@ body{
         <div class="top">
 
             <div>
+
                 <b>IFMS 3.0</b>
+
             </div>
 
             <div>
@@ -682,23 +597,31 @@ body{
             <tr>
 
                 <td>
+
                     <b>नाम :</b>
 
-                    <input id="nameInput"
+                    <input
+                    id="nameInput"
                     value="MAHENDRA SINGH">
+
                 </td>
 
                 <td>
+
                     <b>बिल माह :</b>
 
-                    <input id="monthInput"
+                    <input
+                    id="monthInput"
                     value="April / 2026">
+
                 </td>
 
                 <td>
+
                     <b>श्रेणी :</b>
 
                     <input value="E">
+
                 </td>
 
             </tr>
@@ -706,28 +629,34 @@ body{
             <tr>
 
                 <td>
+
                     <b>पद :</b>
 
                     <input value="Clerk Grade II">
+
                 </td>
 
                 <td>
+
                     <b>वेतन :</b>
 
                     <input value="22000">
+
                 </td>
 
                 <td>
+
                     <b>मुख्यालय :</b>
 
                     <input value="Jaipur">
+
                 </td>
 
             </tr>
 
         </table>
 
-        <!-- MAIN TABLE -->
+        <!-- TABLE -->
 
         <table class="main-table">
 
@@ -830,55 +759,6 @@ body{
 
                 </tr>
 
-                <tr>
-
-                    <td>2</td>
-
-                    <td>
-                        <input value="Jaipur">
-                    </td>
-
-                    <td>
-                        <input value="11/06/24">
-                    </td>
-
-                    <td>
-                        <input value="Chaksu">
-                    </td>
-
-                    <td>
-                        <input value="11/06/24">
-                    </td>
-
-                    <td>
-                        <input value="Bus">
-                    </td>
-
-                    <td>
-                        <input value="150">
-                    </td>
-
-                    <td>
-                        <input value="540"
-                        class="amount">
-                    </td>
-
-                    <td>
-                        <input value="SBM Meeting">
-                    </td>
-
-                    <td>
-
-                        <button
-                        class="delete-btn"
-                        onclick="deleteRow(this)">
-                        X
-                        </button>
-
-                    </td>
-
-                </tr>
-
             </tbody>
 
         </table>
@@ -888,7 +768,7 @@ body{
         <div class="total">
 
             शुद्ध राशि जो भुगतान योग्य है :
-            ₹ <span id="grandTotal">730.00</span>
+            ₹ <span id="grandTotal">190.00</span>
 
         </div>
 
@@ -912,58 +792,19 @@ body{
 
             <div class="sign">
 
-                <br><br>
+                <div id="employeeSign">
 
-                ____________________
+                    ____________________
 
-                <br>
+                    <br>
 
-                कर्मचारी हस्ताक्षर
+                    कर्मचारी हस्ताक्षर
+
+                </div>
 
             </div>
 
             <div class="sign">
-
-                <br><br>
-<!-- DIGITAL SIGN SECTION -->
-
-<div class="digital-sign-box">
-
-    <h3>Digital Signature</h3>
-
-    <!-- CREATE PIN -->
-
-    <input
-    type="password"
-    id="userPin"
-    placeholder="Create 4 Digit PIN"
-    maxlength="4">
-
-    <button onclick="applySignature()">
-
-        Apply Signature
-
-    </button>
-
-    <!-- SIGN RESULT -->
-
-    <div id="signatureResult"
-    class="signature-result">
-
-        <img
-        id="tickImg"
-        src="https://cdn-icons-png.flaticon.com/512/845/845646.png"
-        width="28"
-        style="display:none;">
-
-        <div id="signedText"></div>
-
-        <div id="signDateTime"></div>
-
-    </div>
-
-</div>
-
 
                 ____________________
 
@@ -975,58 +816,31 @@ body{
 
         </div>
 
-<!-- PLACE ABOVE PAGE NUMBER -->
-
-<div class="footer">
-
-    
-
-   
-
-</div>
-
-<!-- DIGITAL SIGN -->
-
-<div class="digital-sign-box">
-
-    <h3>Digital Signature</h3>
-
-    <input
-    type="password"
-    id="userPin"
-    placeholder="Create 4 Digit PIN"
-    maxlength="4">
-
-    <button onclick="applySignature()">
-
-        Apply Signature
-
-    </button>
-
-    <div id="signatureResult"
-    class="signature-result">
-
-        <img
-        id="tickImg"
-        src="https://cdn-icons-png.flaticon.com/512/845/845646.png"
-        width="28"
-        style="display:none;">
-
-        <div id="signedText"></div>
-
-        <div id="signDateTime"></div>
-
-    </div>
-
-</div>
-
         <!-- PAGE NUMBER -->
 
         <div class="page-number">
 
-            Page No. :1
+            Page No. : 1
 
         </div>
+
+    </div>
+
+    <!-- DIGITAL SIGN -->
+
+    <div class="digital-sign-box">
+
+        <input
+        type="password"
+        id="userPin"
+        placeholder="Create 4 Digit PIN"
+        maxlength="4">
+
+        <button onclick="applySignature()">
+
+            Apply Digital Sign
+
+        </button>
 
     </div>
 
@@ -1036,16 +850,9 @@ body{
 
         <button onclick="window.print()">
 
-            Print / Save PDF
+            Preview / Download PDF
 
-        </button> <br>
-        
-<button onclick="previewPDF()">
-
-    Preview PDF
-
-</button>
-
+        </button>
 
     </div>
 
@@ -1054,58 +861,20 @@ body{
 <script>
 
 /* UPDATE HEADER */
-    
-/* APPLY DIGITAL SIGN */
-
-function applySignature(){
-
-    let pin =
-    document.getElementById("userPin").value;
-
-    if(pin.length !== 4){
-
-        alert("Enter 4 Digit PIN");
-
-        return;
-
-    }
-
-    /* SHOW TICK */
-
-    document.getElementById("tickImg")
-    .style.display = "inline-block";
-
-    /* SIGN TEXT */
-
-    document.getElementById("signedText")
-    .innerHTML =
-
-    "Digitally Signed & Verified";
-
-    /* DATE TIME */
-
-    let now = new Date();
-
-    let dateTime = now.toLocaleString();
-
-    document.getElementById("signDateTime")
-    .innerHTML =
-
-    "Signed On : " + dateTime;
-
-}
-
 
 function updateHeader(){
 
     let date =
-    document.getElementById("submitDate").value;
+    document.getElementById(
+    "submitDate").value;
 
     let empId =
-    document.getElementById("empId").value;
+    document.getElementById(
+    "empId").value;
 
     let empName =
-    document.getElementById("empName").value;
+    document.getElementById(
+    "empName").value;
 
     let d = new Date(date);
 
@@ -1118,47 +887,55 @@ function updateHeader(){
 
     });
 
-    document.getElementById("showEmpId")
-    .innerHTML = empId;
+    document.getElementById(
+    "showEmpId").innerHTML =
+    empId;
 
-    document.getElementById("nameInput")
-    .value = empName;
+    document.getElementById(
+    "nameInput").value =
+    empName;
 
-    document.getElementById("monthInput")
-    .value = month;
+    document.getElementById(
+    "monthInput").value =
+    month;
 
-    document.getElementById("printDate")
-    .innerHTML =
+    document.getElementById(
+    "printDate").innerHTML =
     new Date().toLocaleString();
 
 }
 
-/* AUTO TOTAL */
+/* TOTAL */
 
 function calculateTotal(){
 
     let amounts =
-    document.querySelectorAll(".amount");
+    document.querySelectorAll(
+    ".amount");
 
     let total = 0;
 
     amounts.forEach(function(input){
 
-        total += Number(input.value) || 0;
+        total +=
+        Number(input.value) || 0;
 
     });
 
-    document.getElementById("grandTotal")
-    .innerHTML = total.toFixed(2);
+    document.getElementById(
+    "grandTotal").innerHTML =
+    total.toFixed(2);
 
 }
 
-/* AUTO CALCULATE */
+/* AUTO TOTAL */
 
-document.addEventListener("input",
+document.addEventListener(
+"input",
 function(e){
 
-    if(e.target.classList.contains("amount")){
+    if(e.target.classList
+    .contains("amount")){
 
         calculateTotal();
 
@@ -1171,7 +948,8 @@ function(e){
 function addRow(){
 
     let tbody =
-    document.getElementById("tableBody");
+    document.getElementById(
+    "tableBody");
 
     let rowCount =
     tbody.rows.length + 1;
@@ -1182,21 +960,13 @@ function addRow(){
 
         <td>${rowCount}</td>
 
-        <td>
-            <input>
-        </td>
+        <td><input></td>
 
-        <td>
-            <input>
-        </td>
+        <td><input></td>
 
-        <td>
-            <input>
-        </td>
+        <td><input></td>
 
-        <td>
-            <input>
-        </td>
+        <td><input></td>
 
         <td>
             <input value="Bus">
@@ -1211,207 +981,6 @@ function addRow(){
             class="amount">
         </td>
 
-        <td>
-            <input>
-        </td>
-
-        <td>
-
-            <button
-            class="delete-btn"
-            onclick="deleteRow(this)">
-            X
-            </button>
-
-        </td>
-
-    </tr>
-
-    `;
-
-    tbody.insertAdjacentHTML(
-    "beforeend",
-    row);
-
-}
-
-/* DELETE ROW */
-
-function deleteRow(btn){
-
-    btn.closest("tr").remove();
-
-    updateSerial();
-
-    calculateTotal();
-
-}
-
-/* UPDATE SERIAL */
-
-function updateSerial(){
-
-    let rows =
-    document.querySelectorAll(
-    "#tableBody tr");
-
-    rows.forEach(function(row,index){
-
-        row.cells[0].innerHTML =
-        index + 1;
-
-    });
-
-}
-
-/* FIRST LOAD */
-
-calculateTotal();
-    
-/* PDF PREVIEW */
-
-function previewPDF(){
-
-    let originalTitle =
-    document.title;
-
-    document.title = "IFMS_TA_Bill";
-
-    let printContents =
-    document.querySelector(".bill").outerHTML;
-
-    let win =
-    window.open("", "", "width=1200,height=800");
-
-    win.document.write(`
-
-    <html>
-
-    <head>
-
-    <title>Preview PDF</title>
-
-    <style>
-
-    @page{
-        size:A4 landscape;
-        margin:8mm;
-    }
-
-    body{
-        font-family:
-        Arial,
-        sans-serif;
-        margin:0;
-        padding:10px;
-    }
-
-    </style>
-
-    </head>
-
-    <body>
-
-    ${printContents}
-
-    <script>
-
-    window.onload = function(){
-
-        window.print();
-
-    }
-
-    <\/script>
-
-    </body>
-
-    </html>
-
-    `);
-
-    win.document.close();
-
-}
-
-
-/* CLOSE */
-
-function closePreview(){
-
-    document.getElementById(
-    "previewModal"
-    ).style.display = "none";
-
-}
-
-
-/* MANUAL PAGE NUMBER */
-
-
-/* AUTO PAGE NUMBER WORKING */
-
-window.onload = function(){
-
-    updatePageNumbers();
-
-};
-
-
-/* CALCULATE PAGE */
-
-function updatePageNumbers(){
-
-    let contentHeight =
-    document.body.scrollHeight;
-
-    let pageHeight = 1122; // A4 landscape approx px
-
-    let totalPages =
-    Math.ceil(contentHeight / pageHeight);
-
-    let pageBox =
-    document.getElementById("pageNumber");
-
-    pageBox.innerHTML =
-    "Page No. : 1 / " + totalPages;
-
-}
-
-
-/* UPDATE AFTER ROW ADD */
-
-function addRow(){
-
-    let tbody =
-    document.getElementById("tableBody");
-
-    let rowCount =
-    tbody.rows.length + 1;
-
-    let row = `
-
-    <tr>
-
-        <td>${rowCount}</td>
-
-        <td><input></td>
-
-        <td><input></td>
-
-        <td><input></td>
-
-        <td><input></td>
-
-        <td><input value="Bus"></td>
-
-        <td><input value="0"></td>
-
-        <td>
-            <input value="0"
-            class="amount">
-        </td>
-
         <td><input></td>
 
         <td>
@@ -1436,10 +1005,7 @@ function addRow(){
 
     calculateTotal();
 
-    updatePageNumbers();
-
 }
-
 
 /* DELETE */
 
@@ -1451,12 +1017,104 @@ function deleteRow(btn){
 
     calculateTotal();
 
-    updatePageNumbers();
+}
+
+/* SERIAL */
+
+function updateSerial(){
+
+    let rows =
+    document.querySelectorAll(
+    "#tableBody tr");
+
+    rows.forEach(function(
+    row,index){
+
+        row.cells[0]
+        .innerHTML =
+        index + 1;
+
+    });
 
 }
 
+/* DIGITAL SIGN */
 
+function applySignature(){
 
+    let empName =
+    document.getElementById(
+    "nameInput")
+    .value.trim();
+
+    if(empName === ""){
+
+        alert(
+        "Please Enter Employee Name First"
+        );
+
+        return;
+
+    }
+
+    let pin =
+    document.getElementById(
+    "userPin").value;
+
+    if(pin.length !== 4){
+
+        alert(
+        "Enter Valid 4 Digit PIN"
+        );
+
+        return;
+
+    }
+
+    let now =
+    new Date().toLocaleString();
+
+    document.getElementById(
+    "employeeSign")
+    .innerHTML = `
+
+    <div style="
+    color:green;
+    font-weight:bold;
+    font-size:14px;
+    line-height:1.8;
+    ">
+
+        ✔ Digitally Signed
+
+    </div>
+
+    <div style="
+    font-size:13px;
+    font-weight:bold;
+    ">
+
+        ${empName}
+
+    </div>
+
+    <div style="
+    font-size:11px;
+    color:#555;
+    ">
+
+        Signed On :
+        ${now}
+
+    </div>
+
+    `;
+
+}
+
+/* FIRST LOAD */
+
+calculateTotal();
 
 </script>
 
