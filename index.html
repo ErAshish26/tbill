@@ -919,18 +919,7 @@ function resetAllData(){
 
 }
 
-
-/* UPDATE HEADER */
-
-function updateHeader(){
-
-
-/* AUTO CURRENT PRINT DATE & TIME */
-
-window.onload = function(){
-
-    
-/* AUTO CURRENT DATE & TIME */
+/* AUTO LOAD */
 
 window.onload = function(){
 
@@ -943,7 +932,7 @@ window.onload = function(){
 
     now.toLocaleString();
 
-    /* AUTO MONTH YEAR */
+    /* AUTO MONTH */
 
     let monthYear =
     now.toLocaleString(
@@ -953,27 +942,17 @@ window.onload = function(){
         year:'numeric'
     });
 
-    /* SET BILL MONTH */
-
     document.getElementById(
     "monthInput").value =
     monthYear;
 
-    /* AUTO TOTAL */
+/* UPDATE HEADER */
 
-    calculateTotal();
+function updateHeader(){
 
-};
 
-    document.getElementById(
-    "monthInput").value =
-    monthYear;
 
-    /* TOTAL */
-
-    calculateTotal();
-
-}
+    
 
 
     let empId =
