@@ -929,25 +929,41 @@ function updateHeader(){
 
 window.onload = function(){
 
+    
+/* AUTO CURRENT DATE & TIME */
+
+window.onload = function(){
+
     /* CURRENT DATE TIME */
+
+    let now = new Date();
 
     document.getElementById(
     "printDate").innerHTML =
 
-    new Date().toLocaleString();
+    now.toLocaleString();
 
-    /* AUTO MONTH */
-
-    let now = new Date();
+    /* AUTO MONTH YEAR */
 
     let monthYear =
-    now.toLocaleString('default',{
-
+    now.toLocaleString(
+    'default',
+    {
         month:'long',
-
         year:'numeric'
-
     });
+
+    /* SET BILL MONTH */
+
+    document.getElementById(
+    "monthInput").value =
+    monthYear;
+
+    /* AUTO TOTAL */
+
+    calculateTotal();
+
+};
 
     document.getElementById(
     "monthInput").value =
