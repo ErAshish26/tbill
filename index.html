@@ -527,8 +527,7 @@ body{
 
     <div class="toolbar">
 
-        <input type="date"
-        id="submitDate">
+       
 
         <input type="text"
         id="empId"
@@ -925,9 +924,41 @@ function resetAllData(){
 
 function updateHeader(){
 
-    let date =
+
+/* AUTO CURRENT PRINT DATE & TIME */
+
+window.onload = function(){
+
+    /* CURRENT DATE TIME */
+
     document.getElementById(
-    "submitDate").value;
+    "printDate").innerHTML =
+
+    new Date().toLocaleString();
+
+    /* AUTO MONTH */
+
+    let now = new Date();
+
+    let monthYear =
+    now.toLocaleString('default',{
+
+        month:'long',
+
+        year:'numeric'
+
+    });
+
+    document.getElementById(
+    "monthInput").value =
+    monthYear;
+
+    /* TOTAL */
+
+    calculateTotal();
+
+}
+
 
     let empId =
     document.getElementById(
