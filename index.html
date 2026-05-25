@@ -859,6 +859,67 @@ body{
 </div>
 
 <script>
+    
+/* RESET COMPLETE FORM */
+
+function resetAllData(){
+
+    /* TOP DETAILS */
+
+    document.getElementById(
+    "submitDate").value = "";
+
+    document.getElementById(
+    "empId").value = "";
+
+    document.getElementById(
+    "empName").value = "";
+
+    document.getElementById(
+    "showEmpId").innerHTML = "";
+
+    document.getElementById(
+    "printDate").innerHTML = "";
+
+    /* INFO INPUTS */
+
+    document.getElementById(
+    "nameInput").value = "";
+
+    document.getElementById(
+    "monthInput").value = "";
+
+    /* REMOVE ALL TABLE ROWS */
+
+    document.getElementById(
+    "tableBody").innerHTML = "";
+
+    /* RESET TOTAL */
+
+    document.getElementById(
+    "grandTotal").innerHTML =
+    "0.00";
+
+    /* RESET SIGN */
+
+    document.getElementById(
+    "employeeSign").innerHTML = `
+
+    ____________________
+
+    <br>
+
+    कर्मचारी हस्ताक्षर
+
+    `;
+
+    /* RESET PIN */
+
+    document.getElementById(
+    "userPin").value = "";
+
+}
+
 
 /* UPDATE HEADER */
 
