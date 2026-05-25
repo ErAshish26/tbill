@@ -1100,7 +1100,8 @@ function updateSerial(){
 }
 
 
-/* DIGITAL SIGN WITH IMAGE */
+
+/* LOCK + AUTO PDF DOWNLOAD */
 
 function applySignature(){
 
@@ -1136,7 +1137,7 @@ function applySignature(){
     let now =
     new Date().toLocaleString();
 
-    /* DIGITAL SIGN */
+    /* APPLY SIGN */
 
     document.getElementById(
     "employeeSign")
@@ -1183,7 +1184,73 @@ function applySignature(){
 
     `;
 
+    /* LOCK ALL INPUTS */
+
+    let allInputs =
+    document.querySelectorAll(
+    "input");
+
+    allInputs.forEach(function(input){
+
+        input.setAttribute(
+        "readonly",
+        true);
+
+        input.style.pointerEvents =
+        "none";
+
+        input.style.background =
+        "transparent";
+
+    });
+
+    /* DISABLE BUTTONS */
+
+    let buttons =
+    document.querySelectorAll(
+    "button");
+
+    buttons.forEach(function(btn){
+
+        if(
+        btn.innerText !==
+        "Preview / Download PDF"
+        ){
+
+            btn.disabled = true;
+
+            btn.style.opacity = ".5";
+
+            btn.style.cursor =
+            "not-allowed";
+
+        }
+
+    });
+
+    /* HIDE DELETE BUTTONS */
+
+    let deleteBtns =
+    document.querySelectorAll(
+    ".delete-btn");
+
+    deleteBtns.forEach(function(btn){
+
+        btn.style.display =
+        "none";
+
+    });
+
+    /* AUTO OPEN PDF */
+
+    setTimeout(function(){
+
+        window.print();
+
+    },800);
+
 }
+
 
 
 /* FIRST LOAD */
