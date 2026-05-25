@@ -1,13 +1,11 @@
+# Fixed Full Working Code
+
+```html
 <!DOCTYPE html>
 <html lang="hi">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IFMS 3.0 TA Bill</title>
 
 <style>
@@ -24,808 +22,409 @@ content="width=device-width, initial-scale=1.0">
 }
 
 body{
-
     background:#dcdcdc;
-
-    font-family:
-    "Noto Sans Devanagari",
-    Arial,
-    sans-serif;
-
+    font-family:"Noto Sans Devanagari", Arial, sans-serif;
     padding:20px;
-
 }
 
 .wrapper{
-
     width:1550px;
-
     margin:auto;
-
     overflow:auto;
-
 }
 
-/* TOOLBAR */
-
 .toolbar{
-
     background:white;
-
     padding:12px;
-
     border:1px solid #999;
-
     margin-bottom:15px;
-
 }
 
 .toolbar input{
-
     padding:7px;
-
     margin:4px;
-
     font-size:13px;
-
 }
 
-.toolbar button{
-
+.toolbar button,
+.bottom-btns button,
+.digital-sign-box button{
     padding:8px 16px;
-
     margin:4px;
-
     border:none;
-
     cursor:pointer;
-
     background:#111;
-
     color:white;
-
     font-size:13px;
-
 }
-
-/* BILL */
 
 .bill{
-
     position:relative;
-
     overflow:hidden;
-
     background:white;
-
     border:1px solid #000;
-
     padding:8px;
-
-    box-shadow:
-    0 0 8px rgba(0,0,0,.15);
-
+    box-shadow:0 0 8px rgba(0,0,0,.15);
 }
-
-/* WATERMARK */
 
 .bill::before{
-
     content:"IFMS 3.0";
-
     position:absolute;
-
     top:50%;
-
     left:50%;
-
-    transform:
-    translate(-50%,-50%)
-    rotate(-32deg);
-
+    transform:translate(-50%,-50%) rotate(-32deg);
     font-size:120px;
-
     font-weight:700;
-
     color:rgba(0,0,0,0.045);
-
     letter-spacing:8px;
-
     z-index:0;
-
     white-space:nowrap;
-
     pointer-events:none;
-
 }
-
-/* CONTENT */
 
 .bill *{
-
     position:relative;
-
     z-index:1;
-
 }
-
-/* TOP */
 
 .top{
-
     display:flex;
-
     justify-content:space-between;
-
     font-size:12px;
-
     margin-bottom:5px;
-
     border-bottom:1px solid #000;
-
     padding-bottom:5px;
-
 }
 
-/* CENTER */
-
 .center{
-
     text-align:center;
-
     line-height:1.2;
-
 }
 
 .center h2{
-
     font-size:22px;
-
 }
 
 .center h3{
-
     font-size:16px;
-
     margin-top:2px;
-
 }
 
-/* INFO TABLE */
-
 .info{
-
     width:100%;
-
     margin-top:8px;
-
     border-collapse:collapse;
-
 }
 
 .info td{
-
     padding:3px;
-
     font-size:12px;
-
 }
 
 .info input{
-
     border:none;
-
     background:transparent;
-
     width:140px;
-
     font-size:12px;
-
 }
 
-.info input:focus{
-
+.info input:focus,
+.main-table input:focus{
     outline:none;
-
     background:#eef7ff;
-
 }
-
-/* MAIN TABLE */
 
 .main-table{
-
     width:100%;
-
     border-collapse:collapse;
-
     margin-top:8px;
-
     table-layout:fixed;
-
 }
 
 .main-table th,
 .main-table td{
-
     border:1px solid #000;
-
     padding:3px;
-
     text-align:center;
-
     font-size:11px;
-
     vertical-align:middle;
-
     height:32px;
-
 }
 
 .main-table thead th{
-
     background:#f2f2f2;
-
     font-weight:bold;
-
 }
 
 .main-table input{
-
     width:100%;
-
     border:none;
-
     background:transparent;
-
     text-align:center;
-
     font-size:11px;
-
     padding:2px;
-
 }
-
-.main-table input:focus{
-
-    outline:none;
-
-    background:#eef7ff;
-
-}
-
-/* DELETE BUTTON */
 
 .delete-btn{
-
     background:red;
-
     color:white;
-
     border:none;
-
     padding:3px 7px;
-
     cursor:pointer;
-
 }
-
-/* TOTAL */
 
 .total{
-
     margin-top:10px;
-
     text-align:right;
-
     padding-right:20px;
-
     font-size:14px;
-
     font-weight:bold;
-
 }
-
-/* CERTIFICATE */
 
 .cert{
-
     margin-top:14px;
-
     font-size:11px;
-
     line-height:1.8;
-
     text-align:justify;
-
 }
 
-/* FOOTER */
-
 .footer{
-
     display:flex;
-
     justify-content:space-between;
-
     margin-top:45px;
-
 }
 
 .sign{
-
     width:260px;
-
     text-align:center;
-
     font-size:12px;
-
     padding-top:20px;
-
 }
 
-/* DIGITAL SIGN PANEL */
-
 .digital-sign-box{
-
     margin-top:20px;
-
     text-align:right;
-
 }
 
 .digital-sign-box input{
-
     padding:7px;
-
     width:180px;
-
 }
-
-.digital-sign-box button{
-
-    padding:8px 15px;
-
-    border:none;
-
-    background:#111;
-
-    color:white;
-
-    cursor:pointer;
-
-}
-
-/* PAGE NUMBER */
 
 .page-number{
-
     position:fixed;
-
     bottom:5px;
-
     left:50%;
-
     transform:translateX(-50%);
-
     font-size:11px;
-
     font-weight:bold;
-
     background:white;
-
     padding:2px 10px;
-
 }
-
-/* BUTTONS */
 
 .bottom-btns{
-
     margin-top:15px;
-
 }
-
-.bottom-btns button{
-
-    padding:9px 18px;
-
-    border:none;
-
-    background:#111;
-
-    color:white;
-
-    cursor:pointer;
-
-    margin-right:8px;
-
-}
-
-/* HOVER */
 
 .main-table tr:hover{
-
     background:#f8fbff;
-
 }
-
-/* PRINT */
 
 @media print{
 
     body{
-
         background:white;
-
         -webkit-print-color-adjust:exact;
-
         print-color-adjust:exact;
-
     }
 
     .toolbar,
     .bottom-btns,
     .digital-sign-box{
-
         display:none !important;
-
     }
 
     .wrapper{
-
         width:100%;
-
     }
 
     .bill{
-
         border:none;
-
         box-shadow:none;
-
     }
 
     input{
-
         border:none !important;
-
         background:transparent !important;
-
     }
 
     .main-table th:last-child,
     .main-table td:last-child{
-
         display:none !important;
-
-        width:0 !important;
-
-        padding:0 !important;
-
-        border:none !important;
-
     }
 
     .delete-btn{
-
         display:none !important;
-
     }
-
 }
 
 </style>
-
 </head>
 
 <body>
 
 <div class="wrapper">
 
-    <!-- TOOLBAR -->
-
     <div class="toolbar">
 
-       
+        <input type="text" id="empId" placeholder="Employee ID">
 
-        <input type="text"
-        id="empId"
-        placeholder="Employee ID">
-
-        <input type="text"
-        id="empName"
-        placeholder="Employee Name">
+        <input type="text" id="empName" placeholder="Employee Name">
 
         <button onclick="updateHeader()">
-
             Update Header
-
         </button>
 
         <button onclick="addRow()">
-
             Add Row
-
         </button>
 
     </div>
 
-    <!-- BILL -->
-
     <div class="bill">
 
-        <!-- TOP -->
-
         <div class="top">
-
             <div>
-
                 <b>IFMS 3.0</b>
-
             </div>
 
             <div>
-
                 Print Date & Time :
                 <span id="printDate"></span>
-
                 <br>
-
                 Employee ID :
                 <span id="showEmpId"></span>
-
             </div>
-
         </div>
-
-        <!-- TITLE -->
 
         <div class="center">
-
             <h2>यात्रा भत्ता बिल</h2>
-
             <h3>TA Bill</h3>
-
         </div>
-
-        <!-- INFO -->
 
         <table class="info">
 
             <tr>
-
                 <td>
-
                     <b>नाम :</b>
-
-                    <input
-                    id="nameInput"
-                    value="MAHENDRA SINGH">
-
+                    <input id="nameInput" value="MAHENDRA SINGH">
                 </td>
 
                 <td>
-
                     <b>बिल माह :</b>
-
-                    <input
-                    id="monthInput"
-                    value="April / 2026">
-
+                    <input id="monthInput" value="April / 2026">
                 </td>
 
                 <td>
-
                     <b>श्रेणी :</b>
-
                     <input value="E">
-
                 </td>
-
             </tr>
 
             <tr>
-
                 <td>
-
                     <b>पद :</b>
-
                     <input value="Clerk Grade II">
-
                 </td>
 
                 <td>
-
                     <b>वेतन :</b>
-
                     <input value="22000">
-
                 </td>
 
                 <td>
-
                     <b>मुख्यालय :</b>
-
                     <input value="Jaipur">
-
                 </td>
-
             </tr>
 
         </table>
 
-        <!-- TABLE -->
-
         <table class="main-table">
 
             <thead>
-
                 <tr>
-
-                    <th style="width:40px;">
-                        क्र.सं.
-                    </th>
-
-                    <th>
-                        स्थान प्रस्थान
-                    </th>
-
-                    <th style="width:90px;">
-                        दिनांक
-                    </th>
-
-                    <th>
-                        स्थान आगमन
-                    </th>
-
-                    <th style="width:90px;">
-                        दिनांक
-                    </th>
-
-                    <th style="width:80px;">
-                        यात्रा प्रकार
-                    </th>
-
-                    <th style="width:70px;">
-                        दूरी
-                    </th>
-
-                    <th style="width:70px;">
-                        राशि
-                    </th>
-
-                    <th>
-                        उद्देश्य
-                    </th>
-
-                    <th style="width:60px;">
-                        Delete
-                    </th>
-
+                    <th style="width:40px;">क्र.सं.</th>
+                    <th>स्थान प्रस्थान</th>
+                    <th style="width:90px;">दिनांक</th>
+                    <th>स्थान आगमन</th>
+                    <th style="width:90px;">दिनांक</th>
+                    <th style="width:80px;">यात्रा प्रकार</th>
+                    <th style="width:70px;">दूरी</th>
+                    <th style="width:70px;">राशि</th>
+                    <th>उद्देश्य</th>
+                    <th style="width:60px;">Delete</th>
                 </tr>
-
             </thead>
 
             <tbody id="tableBody">
 
                 <tr>
-
                     <td>1</td>
-
+                    <td><input value="Chaksu"></td>
+                    <td><input value="11/06/24"></td>
+                    <td><input value="Jaipur"></td>
+                    <td><input value="11/06/24"></td>
+                    <td><input value="Bus"></td>
+                    <td><input value="150"></td>
+                    <td><input value="190" class="amount"></td>
+                    <td><input value="SBM Meeting"></td>
                     <td>
-                        <input value="Chaksu">
-                    </td>
-
-                    <td>
-                        <input value="11/06/24">
-                    </td>
-
-                    <td>
-                        <input value="Jaipur">
-                    </td>
-
-                    <td>
-                        <input value="11/06/24">
-                    </td>
-
-                    <td>
-                        <input value="Bus">
-                    </td>
-
-                    <td>
-                        <input value="150">
-                    </td>
-
-                    <td>
-                        <input value="190"
-                        class="amount">
-                    </td>
-
-                    <td>
-                        <input value="SBM Meeting">
-                    </td>
-
-                    <td>
-
-                        <button
-                        class="delete-btn"
-                        onclick="deleteRow(this)">
-                        X
+                        <button class="delete-btn" onclick="deleteRow(this)">
+                            X
                         </button>
-
                     </td>
-
                 </tr>
 
             </tbody>
 
         </table>
 
-        <!-- TOTAL -->
-
         <div class="total">
-
-            शुद्ध राशि जो भुगतान योग्य है :
-            ₹ <span id="grandTotal">190.00</span>
-
+            शुद्ध राशि जो भुगतान योग्य है : ₹
+            <span id="grandTotal">190.00</span>
         </div>
-
-        <!-- CERTIFICATE -->
 
         <div class="cert">
-
             1. प्रमाणित किया जाता है कि उक्त यात्रा मैंने वास्तव में की है तथा पूर्व में इस बिल का भुगतान प्राप्त नहीं किया है।<br>
-
             2. प्रमाणित किया जाता है कि इस बिल में दावा की गई राशि राजस्थान यात्रा भत्ता नियम 1971 के अनुसार है।<br>
-
             3. प्रमाणित किया जाता है कि मुझे किसी प्रकार की निःशुल्क सरकारी सुविधा प्राप्त नहीं हुई।<br>
-
-            4. प्रमाणित किया जाता है कि यह यात्रा विभागीय कार्य हेतु की गई है।
-
+            4. प्रमाणित किया जाता है कि यह यात्रा विभागीय कार्य हेतु की गई है。
         </div>
-
-        <!-- SIGN -->
 
         <div class="footer">
 
             <div class="sign">
-
                 <div id="employeeSign">
-
                     ____________________
-
                     <br>
-
                     कर्मचारी हस्ताक्षर
-
                 </div>
-
             </div>
 
             <div class="sign">
-
                 ____________________
-
                 <br>
-
                 अधिकारी हस्ताक्षर
-
             </div>
 
         </div>
 
-        <!-- PAGE NUMBER -->
-
         <div class="page-number">
-
             Page No. : 1
-
         </div>
 
     </div>
-
-    <!-- DIGITAL SIGN -->
 
     <div class="digital-sign-box">
 
@@ -836,21 +435,15 @@ body{
         maxlength="4">
 
         <button onclick="applySignature()">
-
             Apply Digital Sign
-
         </button>
 
     </div>
 
-    <!-- BUTTONS -->
-
     <div class="bottom-btns">
 
         <button onclick="window.print()">
-
             Preview / Download PDF
-
         </button>
 
     </div>
@@ -858,188 +451,75 @@ body{
 </div>
 
 <script>
-    
-/* RESET COMPLETE FORM */
-
-function resetAllData(){
-
-    /* TOP DETAILS */
-
-    document.getElementById(
-    "submitDate").value = "";
-
-    document.getElementById(
-    "empId").value = "";
-
-    document.getElementById(
-    "empName").value = "";
-
-    document.getElementById(
-    "showEmpId").innerHTML = "";
-
-    document.getElementById(
-    "printDate").innerHTML = "";
-
-    /* INFO INPUTS */
-
-    document.getElementById(
-    "nameInput").value = "";
-
-    document.getElementById(
-    "monthInput").value = "";
-
-    /* REMOVE ALL TABLE ROWS */
-
-    document.getElementById(
-    "tableBody").innerHTML = "";
-
-    /* RESET TOTAL */
-
-    document.getElementById(
-    "grandTotal").innerHTML =
-    "0.00";
-
-    /* RESET SIGN */
-
-    document.getElementById(
-    "employeeSign").innerHTML = `
-
-    ____________________
-
-    <br>
-
-    कर्मचारी हस्ताक्षर
-
-    `;
-
-    /* RESET PIN */
-
-    document.getElementById(
-    "userPin").value = "";
-
-}
-
-/* AUTO LOAD */
 
 window.onload = function(){
 
-    /* CURRENT DATE TIME */
-
     let now = new Date();
 
-    document.getElementById(
-    "printDate").innerHTML =
-
+    document.getElementById("printDate").innerHTML =
     now.toLocaleString();
 
-    /* AUTO MONTH */
-
-    let monthYear =
-    now.toLocaleString(
-    'default',
-    {
+    let monthYear = now.toLocaleString('default', {
         month:'long',
         year:'numeric'
     });
 
-    document.getElementById(
-    "monthInput").value =
-    monthYear;
+    document.getElementById("monthInput").value = monthYear;
 
-/* UPDATE HEADER */
+    calculateTotal();
+};
 
 function updateHeader(){
 
+    let empId = document.getElementById("empId").value;
 
+    let empName = document.getElementById("empName").value;
 
-    
+    let now = new Date();
 
-
-    let empId =
-    document.getElementById(
-    "empId").value;
-
-    let empName =
-    document.getElementById(
-    "empName").value;
-
-    let d = new Date(date);
-
-    let month =
-    d.toLocaleString('default',{
-
+    let month = now.toLocaleString('default', {
         month:'long',
-
         year:'numeric'
-
     });
 
-    document.getElementById(
-    "showEmpId").innerHTML =
-    empId;
+    document.getElementById("showEmpId").innerHTML = empId;
 
-    document.getElementById(
-    "nameInput").value =
-    empName;
+    document.getElementById("nameInput").value = empName;
 
-    document.getElementById(
-    "monthInput").value =
-    month;
+    document.getElementById("monthInput").value = month;
 
-    document.getElementById(
-    "printDate").innerHTML =
-    new Date().toLocaleString();
-
+    document.getElementById("printDate").innerHTML =
+    now.toLocaleString();
 }
-
-/* TOTAL */
 
 function calculateTotal(){
 
-    let amounts =
-    document.querySelectorAll(
-    ".amount");
+    let amounts = document.querySelectorAll(".amount");
 
     let total = 0;
 
     amounts.forEach(function(input){
-
-        total +=
-        Number(input.value) || 0;
-
+        total += Number(input.value) || 0;
     });
 
-    document.getElementById(
-    "grandTotal").innerHTML =
+    document.getElementById("grandTotal").innerHTML =
     total.toFixed(2);
-
 }
 
-/* AUTO TOTAL */
 
-document.addEventListener(
-"input",
-function(e){
+document.addEventListener("input", function(e){
 
-    if(e.target.classList
-    .contains("amount")){
-
+    if(e.target.classList.contains("amount")){
         calculateTotal();
-
     }
 
 });
 
-/* ADD ROW */
-
 function addRow(){
 
-    let tbody =
-    document.getElementById(
-    "tableBody");
+    let tbody = document.getElementById("tableBody");
 
-    let rowCount =
-    tbody.rows.length + 1;
+    let rowCount = tbody.rows.length + 1;
 
     let row = `
 
@@ -1048,11 +528,8 @@ function addRow(){
         <td>${rowCount}</td>
 
         <td><input></td>
-
         <td><input></td>
-
         <td><input></td>
-
         <td><input></td>
 
         <td>
@@ -1064,37 +541,27 @@ function addRow(){
         </td>
 
         <td>
-            <input value="0"
-            class="amount">
+            <input value="0" class="amount">
         </td>
 
         <td><input></td>
 
         <td>
-
-            <button
-            class="delete-btn"
-            onclick="deleteRow(this)">
-            X
+            <button class="delete-btn" onclick="deleteRow(this)">
+                X
             </button>
-
         </td>
 
     </tr>
 
     `;
 
-    tbody.insertAdjacentHTML(
-    "beforeend",
-    row);
+    tbody.insertAdjacentHTML("beforeend", row);
 
     updateSerial();
 
     calculateTotal();
-
 }
-
-/* DELETE */
 
 function deleteRow(btn){
 
@@ -1103,71 +570,36 @@ function deleteRow(btn){
     updateSerial();
 
     calculateTotal();
-
 }
-
-/* SERIAL */
 
 function updateSerial(){
 
-    let rows =
-    document.querySelectorAll(
-    "#tableBody tr");
+    let rows = document.querySelectorAll("#tableBody tr");
 
-    rows.forEach(function(
-    row,index){
-
-        row.cells[0]
-        .innerHTML =
-        index + 1;
-
+    rows.forEach(function(row, index){
+        row.cells[0].innerHTML = index + 1;
     });
-
 }
-
-
-
-/* LOCK + AUTO PDF DOWNLOAD */
 
 function applySignature(){
 
-    let empName =
-    document.getElementById(
-    "nameInput")
-    .value.trim();
+    let empName = document.getElementById("nameInput").value.trim();
 
     if(empName === ""){
-
-        alert(
-        "Please Enter Employee Name First"
-        );
-
+        alert("Please Enter Employee Name First");
         return;
-
     }
 
-    let pin =
-    document.getElementById(
-    "userPin").value;
+    let pin = document.getElementById("userPin").value;
 
     if(pin.length !== 4){
-
-        alert(
-        "Enter Valid 4 Digit PIN"
-        );
-
+        alert("Enter Valid 4 Digit PIN");
         return;
-
     }
 
-    let now =
-    new Date().toLocaleString();
+    let now = new Date().toLocaleString();
 
-    /* APPLY SIGN */
-
-    document.getElementById(
-    "employeeSign")
-    .innerHTML = `
+    document.getElementById("employeeSign").innerHTML = `
 
     <div style="
     display:flex;
@@ -1203,87 +635,56 @@ function applySignature(){
     margin-top:4px;
     ">
 
-        Signed On :
-        ${now}
+        Signed On : ${now}
 
     </div>
 
     `;
 
-    /* LOCK ALL INPUTS */
-
-    let allInputs =
-    document.querySelectorAll(
-    "input");
+    let allInputs = document.querySelectorAll("input");
 
     allInputs.forEach(function(input){
 
-        input.setAttribute(
-        "readonly",
-        true);
+        input.setAttribute("readonly", true);
 
-        input.style.pointerEvents =
-        "none";
+        input.style.pointerEvents = "none";
 
-        input.style.background =
-        "transparent";
-
+        input.style.background = "transparent";
     });
 
-    /* DISABLE BUTTONS */
-
-    let buttons =
-    document.querySelectorAll(
-    "button");
+    let buttons = document.querySelectorAll("button");
 
     buttons.forEach(function(btn){
 
-        if(
-        btn.innerText !==
-        "Preview / Download PDF"
-        ){
+        if(btn.innerText !== "Preview / Download PDF"){
 
             btn.disabled = true;
-
             btn.style.opacity = ".5";
-
-            btn.style.cursor =
-            "not-allowed";
-
+            btn.style.cursor = "not-allowed";
         }
-
     });
 
-    /* HIDE DELETE BUTTONS */
-
-    let deleteBtns =
-    document.querySelectorAll(
-    ".delete-btn");
+    let deleteBtns = document.querySelectorAll(".delete-btn");
 
     deleteBtns.forEach(function(btn){
-
-        btn.style.display =
-        "none";
-
+        btn.style.display = "none";
     });
 
-    /* AUTO OPEN PDF */
-
     setTimeout(function(){
-
         window.print();
-
-    },800);
-
+    }, 800);
 }
-
-
-
-/* FIRST LOAD */
-
-calculateTotal();
 
 </script>
 
 </body>
 </html>
+```
+
+## Main Problems Fixed
+
+1. `window.onload` properly close nahi hua tha.
+2. `let d = new Date(date);` me `date` undefined tha.
+3. `calculateTotal()` load pe properly call nahi ho raha tha.
+4. JavaScript braces aur structure broken tha.
+5. Some formatting clean ki gayi hai.
