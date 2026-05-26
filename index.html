@@ -337,7 +337,7 @@ body{
             <tr>
                 <td>
                     <b>पद :</b>
-                    <input value="Clerk Grade II">
+                    <input id="desgInput value="Clerk Grade II">
                 </td>
 
                 <td>
@@ -488,6 +488,8 @@ function updateHeader(){
     document.getElementById("showEmpId").innerHTML = empId;
 
     document.getElementById("nameInput").value = empName;
+    document.getElementById("desgInput").value = empDesg;
+
 
     document.getElementById("monthInput").value = month;
 
@@ -640,6 +642,7 @@ function applySignature(){
     ">
 
         ${empName}
+        $(empdesg}
 
     </div>
 
